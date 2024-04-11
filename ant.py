@@ -1,35 +1,82 @@
 import random
 import networkx as nx
+import graph
+import random
 class Ant:
-    def __init__(self, graph: nx.Graph, source: int, destination: int):
-        self.graph = graph
+    def __init__(self, graph: graph.GraphStruct, source: int, destination: int,alpha:float,beta:float):
+        self.graph= graph
         self.source = source
         self.destination = destination
+        self.alpha=alpha
+        self.beta=beta
         self.current = source
-        self.road = []
+        self.road = [source]
         self.visited = [False for i in range(destination+1)]
+
 
     def reached_destination(self):
         if self.current == self.destination: return True
         return False
 
     def find_next(self):
-        new = 0
-
-        # add implementation
+        unvisited_neighbours=self.get_unvisited_neighbours(self.current)
+        if len(unvisited_neighbours)==0: return None
+        edge_value_for_ant=[]
+        sumy=0
+        probability=[]
+        for i in unvisited_neighbours:
+            new_value=self.graph.get_pheromones(self.current,i)**self.alpha+self.graph.get_distance(self.current,i)**self.beta
+            edge_value_for_ant.append(new_value)
+            sumy+=new_value
+        for i in edge_value_for_ant:
+            probability.append(i/sumy)
+        rand=random.random()
+        to_pick=[0]*len(probability)
+        for i in range(1,len(probability)):
+            to_pick[i]+=to_pick[i-1]
+        new=0
+        for i in range(len(probability)):
+            if to_pick[i]>=rand:
+                new=unvisited_neighbours[i]
         return new
 
     def move(self):
-        self.road.append(self.current)
         self.visited[self.current] = True
-        self.current = self.find_next()
-
-    def get_unvisited(self):
-        neighbours = []
-        for i in range(len(self.visited)):
+        next_one= self.find_next()
+        if not next_one: return
+        self.current=next_one
+        self.road.append(self.current)
+    def get_unvisited_neighbours(self,u):
+        unvisited_neighbours=[]
+        for i in self.graph.get_neighbours(u):
             if not self.visited[i]:
-                neighbours.append(i)
-        return neighbours
-    def get_neighbours(self):
-        neighbours = []
-        return neighbours
+                unvisited_neighbours.append(i)
+        return unvisited_neighbours
+    def pheromones(self):
+        for i in range(1,len(self.road)):
+            new_pher=1/self.graph.get_distance(i-1,i)
+            self.graph.deposit_pheromones(i-1,i,new_pher)
+        return
+    def find_best(self):
+        while not self.reached_destination():
+            self.visited[self.current] = True
+            unvisited_neighbours = self.get_unvisited_neighbours(self.current)
+            if len(unvisited_neighbours) == 0: return None
+            edge_value_for_ant = []
+            sumy = 0
+            probability = []
+            maxim=0
+            for i in unvisited_neighbours:
+                new_value = self.graph.get_pheromones(self.current, i) ** self.alpha + self.graph.get_distance(
+                    self.current, i) ** self.beta
+                edge_value_for_ant.append(new_value)
+                sumy += new_value
+            for i in edge_value_for_ant:
+                probability.append(i / sumy)
+            for i in range(len(probability)):
+                if probability[maxim]<probability[i]:
+                    maxim=i
+            self.current=unvisited_neighbours[maxim]
+            self.road.append(self.current)
+
+        return None

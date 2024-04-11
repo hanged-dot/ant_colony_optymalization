@@ -1,7 +1,7 @@
 from aco import ACO
 import networkx as nx
 
-G = nx.Graph()
+G = nx.DiGraph()
 n = 5  # number of nodes start on 0 end on n-1
 ants = 3
 days = 100
@@ -16,10 +16,8 @@ G.add_nodes_from(nodes)
 edges = []
 for i in range(n - 1):
     for j in range(i + 1, n):
-        edges.append((i, j))
-G.add_edges_from(edges, color='red', pheromones=pheromones, distance=distance)
+        G.add_edge(i,j, pheromones=pheromones, distance=distance)
 
 aco = ACO(G, n, ants, pheromones, evaporation, importance_of_pheromones, importance_of_distance, days)
 
-#aco.find_path()
-aco.draw_graph()
+aco.find_path()
