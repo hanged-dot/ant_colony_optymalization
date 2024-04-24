@@ -3,19 +3,25 @@ from typing import List
 import networkx as nx
 import matplotlib.pyplot as plt
 
-class GraphStruct:
-    def __init__(self,graph: nx.DiGraph,evaporation_rate:float):
-        self.graph = graph
-        self.evaporation_rate =evaporation_rate
 
-    #initialize graph pheromones(not needed for now)
-    def set_pheromones(self,u,v,how_much):self.graph[u][v]["pheromones"]=how_much
-    def get_pheromones(self,u,v): return self.graph[u][v]["pheromones"]
-    def deposit_pheromones(self,u,v,how_much):
-        self.graph[u][v]["pheromones"]+= (1-self.evaporation_rate) + how_much
-    def get_distance(self,u,v): return self.graph[u][v]["distance"]
-    def get_neighbours(self,u): return list(self.graph[u].keys())
-    def draw_graph(self,shortest_path):
+class GraphStruct:
+    def __init__(self, graph: nx.DiGraph, evaporation_rate: float):
+        self.graph = graph
+        self.evaporation_rate = evaporation_rate
+
+    # initialize graph pheromones(not needed for now)
+    def set_pheromones(self, u, v, how_much): self.graph[u][v]["pheromones"] = how_much
+
+    def get_pheromones(self, u, v): return self.graph[u][v]["pheromones"]
+
+    def deposit_pheromones(self, u, v, how_much):
+        self.graph[u][v]["pheromones"] += (1 - self.evaporation_rate) + how_much
+
+    def get_distance(self, u, v): return self.graph[u][v]["distance"]
+
+    def get_neighbours(self, u): return list(self.graph[u].keys())
+
+    def draw_graph(self, shortest_path):
         for e in self.graph.edges():
             source, destination = e[0], e[1]
             self.graph[source][destination]["pheromones"] = round(self.graph[source][destination]["pheromones"])
@@ -28,7 +34,7 @@ class GraphStruct:
         nx.draw_networkx_edges(
             self.graph,
             pos,
-            edgelist=list(zip(shortest_path, shortest_path[1:])),
+            edgelist=list(shortest_path),
             edge_color="r",
             width=4,
         )
