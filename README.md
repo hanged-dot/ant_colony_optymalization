@@ -18,3 +18,22 @@ https://en.wikipedia.org/wiki/Ant_colony_optimization_algorithms
 
 
 https://www.academia.edu/8051487/Mathematical_Optimization_Linear_Programming_to_Metaheuristics_by_Prof_Xin_She_Yang
+
+
+To do:
+
+-dokumentacja
+
+-prezentacja
+
+-ui do wybierania grafu
+
+-start end dowolny dla grafu 
+
+-lepsze wyświetlanie grafu
+
+-wyświetlanie djikstry
+
+-generowanie grafu 
+
+-graf z ulic (jak wygenerować skąd wziąć)

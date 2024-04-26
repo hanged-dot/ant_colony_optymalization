@@ -2,9 +2,9 @@ from aco import ACO
 import networkx as nx
 
 G = nx.Graph()
-n = 8  # number of nodes start on 0 end on n-1
-ants = 5
-days = 10
+n = 6  # number of nodes start on 0 end on n-1
+ants = 10
+days = 50
 pheromones = 0.2
 distance = 1
 evaporation = 0.1
@@ -21,7 +21,7 @@ for i in range(n - 1):
 dijkstra_path = nx.dijkstra_path(G, 0, n-1)
 dijkstra_cost = nx.path_weight(G, dijkstra_path, "distance")
 
-print(f"Dijkstra - path: {dijkstra_path}, cost: {dijkstra_cost}")
+print(f"Dijkstra - path: {dijkstra_path}, distance: {dijkstra_cost}")
 
 aco = ACO(G, n, ants, pheromones, evaporation, importance_of_pheromones, importance_of_distance, days)
 
