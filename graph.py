@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 
 
 class GraphStruct:
-    def __init__(self, graph: nx.DiGraph, evaporation_rate: float):
+    def __init__(self, graph: nx.Graph, evaporation_rate: float):
         self.graph = graph
         self.evaporation_rate = evaporation_rate
 

@@ -9,7 +9,7 @@ class Ant:
         self.graph = graph
         self.source = source
         self.destination = destination
-        self.alpha = alpha  # do wywalenia
+        self.alpha = alpha
         self.beta = beta
         self.current = source
         self.road = [source]
@@ -42,6 +42,7 @@ class Ant:
         for i in range(len(probability)):
             if to_pick[i] >= rand:
                 new = unvisited_neighbours[i]
+                break
         assert new is not None
         return new
 
@@ -61,8 +62,8 @@ class Ant:
 
     def pheromones(self):
         for i in range(1, len(self.road)):
-            new_pher = 1 / self.graph.get_distance(i - 1, i)
-            self.graph.deposit_pheromones(i - 1, i, new_pher)
+            new_pher = 1 / self.graph.get_distance(self.road[i - 1], self.road[i])
+            self.graph.deposit_pheromones(self.road[i - 1], self.road[i], new_pher)
         return
 
     def find_best(self):

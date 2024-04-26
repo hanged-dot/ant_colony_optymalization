@@ -9,9 +9,9 @@ INITIAL_PHEROMONE = 1.0
 
 
 class ACO:
-    def __init__(self, graph: nx.DiGraph, nodes_count: int, ants: int, pheromone_per_ant: float,
+    def __init__(self, graph: nx.Graph, nodes_count: int, ants: int, pheromone_per_ant: float,
                  evaporation_rate: float, alpha_pheromones: float, beta_pheromones: float, days: int):
-        self.graph_base: nx.DiGraph = graph
+        self.graph_base: nx.Graph = graph
         self.nodes_count = nodes_count
         self.ants_count = ants
         self.pheromone_per_ant = pheromone_per_ant
@@ -33,7 +33,6 @@ class ACO:
 
     def find_path(self):
         for i in range(self.days):
-            print(i)
             self.ant_array.clear()
             for _ in range(self.ants_count):
                 new_ant = Ant(self.graph, 0, self.nodes_count - 1, self.alpha_pheromones, self.beta_pheromones)
