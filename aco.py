@@ -32,6 +32,7 @@ class ACO:
                 a.pheromones()
 
     def find_path(self):
+        results = []
         for i in range(self.days):
             self.ant_array.clear()
             for _ in range(self.ants_count):
@@ -40,10 +41,22 @@ class ACO:
             for a in self.ant_array:
                 while not a.reached_destination() and a.get_unvisited_neighbours() != []:
                     a.move_ant()
+
+            results.append(
+                self.path_total_dist(self.find_solution())
+            )
+
             self.ant_path_pheromone_deposit()
 
         short_path = self.find_solution()
-        self.graph.draw_graph(short_path)
+        return short_path, results
+
+    def path_total_dist(self, path):
+        length = 0
+        for u, v in path:
+            length += self.graph_base[u][v]["distance"]
+        return length
+
 
     def find_solution(self):
         new_ant = Ant(self.graph, 0, self.nodes_count - 1, self.alpha_pheromones, self.beta_pheromones)
