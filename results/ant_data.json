@@ -1,0 +1,205 @@
+{
+    "best_path": 6,
+    "ant_optimization": [
+        {
+            "day": 1,
+            "path_cost": 4475
+        },
+        {
+            "day": 2,
+            "path_cost": 4438
+        },
+        {
+            "day": 3,
+            "path_cost": 4928
+        },
+        {
+            "day": 4,
+            "path_cost": 4011
+        },
+        {
+            "day": 5,
+            "path_cost": 4789
+        },
+        {
+            "day": 6,
+            "path_cost": 5096
+        },
+        {
+            "day": 7,
+            "path_cost": 5069
+        },
+        {
+            "day": 8,
+            "path_cost": 5355
+        },
+        {
+            "day": 9,
+            "path_cost": 5268
+        },
+        {
+            "day": 10,
+            "path_cost": 5462
+        },
+        {
+            "day": 11,
+            "path_cost": 5341
+        },
+        {
+            "day": 12,
+            "path_cost": 5341
+        },
+        {
+            "day": 13,
+            "path_cost": 5370
+        },
+        {
+            "day": 14,
+            "path_cost": 5370
+        },
+        {
+            "day": 15,
+            "path_cost": 3886
+        },
+        {
+            "day": 16,
+            "path_cost": 3886
+        },
+        {
+            "day": 17,
+            "path_cost": 3886
+        },
+        {
+            "day": 18,
+            "path_cost": 3595
+        },
+        {
+            "day": 19,
+            "path_cost": 4466
+        },
+        {
+            "day": 20,
+            "path_cost": 4782
+        },
+        {
+            "day": 21,
+            "path_cost": 4782
+        },
+        {
+            "day": 22,
+            "path_cost": 5106
+        },
+        {
+            "day": 23,
+            "path_cost": 5192
+        },
+        {
+            "day": 24,
+            "path_cost": 4818
+        },
+        {
+            "day": 25,
+            "path_cost": 2793
+        },
+        {
+            "day": 26,
+            "path_cost": 4813
+        },
+        {
+            "day": 27,
+            "path_cost": 5389
+        },
+        {
+            "day": 28,
+            "path_cost": 5330
+        },
+        {
+            "day": 29,
+            "path_cost": 4614
+        },
+        {
+            "day": 30,
+            "path_cost": 4614
+        },
+        {
+            "day": 31,
+            "path_cost": 4614
+        },
+        {
+            "day": 32,
+            "path_cost": 4614
+        },
+        {
+            "day": 33,
+            "path_cost": 5161
+        },
+        {
+            "day": 34,
+            "path_cost": 5441
+        },
+        {
+            "day": 35,
+            "path_cost": 5294
+        },
+        {
+            "day": 36,
+            "path_cost": 5029
+        },
+        {
+            "day": 37,
+            "path_cost": 4747
+        },
+        {
+            "day": 38,
+            "path_cost": 100
+        },
+        {
+            "day": 39,
+            "path_cost": 100
+        },
+        {
+            "day": 40,
+            "path_cost": 100
+        },
+        {
+            "day": 41,
+            "path_cost": 100
+        },
+        {
+            "day": 42,
+            "path_cost": 100
+        },
+        {
+            "day": 43,
+            "path_cost": 100
+        },
+        {
+            "day": 44,
+            "path_cost": 100
+        },
+        {
+            "day": 45,
+            "path_cost": 100
+        },
+        {
+            "day": 46,
+            "path_cost": 100
+        },
+        {
+            "day": 47,
+            "path_cost": 100
+        },
+        {
+            "day": 48,
+            "path_cost": 100
+        },
+        {
+            "day": 49,
+            "path_cost": 100
+        },
+        {
+            "day": 50,
+            "path_cost": 100
+        }
+    ]
+}
