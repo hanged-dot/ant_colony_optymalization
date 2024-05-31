@@ -15,13 +15,18 @@ class GraphStruct:
     def get_pheromones(self, u, v): return self.graph[u][v]["pheromones"]
 
     def deposit_pheromones(self, u, v, how_much):
-        self.graph[u][v]["pheromones"] += (1 - self.evaporation_rate) + how_much
+        self.graph[u][v]["pheromones"] += how_much
 
     def get_distance(self, u, v): return self.graph[u][v]["distance"]
 
+    def evaporate(self):
+        for e in self.graph.edges():
+            u, v = e[0], e[1]
+            self.graph[u][v]["pheromones"] = (1 - self.evaporation_rate) * self.graph[u][v]["pheromones"]
+
     def get_neighbours(self, u): return list(self.graph[u].keys())
 
-    def draw_graph(self, shortest_path):
+    def draw_graph(self, shortest_path, directory):
         for e in self.graph.edges():
             source, destination = e[0], e[1]
             self.graph[source][destination]["pheromones"] = round(self.graph[source][destination]["pheromones"])
@@ -48,5 +53,6 @@ class GraphStruct:
         ax = plt.gca()
         ax.margins(0.08)
         plt.axis("off")
-        plt.tight_layout()
+        #plt.tight_layout()
+        plt.savefig(directory)
         plt.show()

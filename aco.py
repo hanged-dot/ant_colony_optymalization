@@ -20,7 +20,7 @@ class ACO:
         self.beta_pheromones = beta_pheromones
         self.days = days
         self.ant_array = []
-        # Initialize all edges of the graph with a pheromone value of 1.0
+        # Initialize all edges of the graph with a pheromone value of INITIAL PHEROMONE
 
         self.graph = GraphStruct(self.graph_base, self.evaporation_rate)
         for e in self.graph.graph.edges:
@@ -47,6 +47,7 @@ class ACO:
             )
 
             self.ant_path_pheromone_deposit()
+            self.graph.evaporate()
 
         short_path = self.find_solution()
         return short_path, results
