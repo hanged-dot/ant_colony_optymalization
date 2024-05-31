@@ -1,5 +1,5 @@
 from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QHBoxLayout
-from PyQt5.QtGui import QPixmap
+from PyQt5.QtGui import QPixmap, QIcon
 import sys
 class ImageWindow(QWidget):
     def __init__(self,graph_drawing, path_chart):
@@ -28,5 +28,8 @@ class ImageWindow(QWidget):
 def resultwindow(graph_drawing, path_chart):
     app = QApplication(sys.argv)
     result = ImageWindow(graph_drawing,path_chart)
+    icon = QIcon()
+    icon.addPixmap(QPixmap("antcolony.png"), QIcon.Selected, QIcon.On)
+    result.setWindowIcon(icon)
     result.show()
     sys.exit(app.exec_())
