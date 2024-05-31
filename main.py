@@ -5,6 +5,7 @@ import networkx as nx
 import load_graph
 import fire
 import matplotlib.pyplot as plt
+import result_gui
 
 def default_graph(pheromones=1, distance=1):
     n=5
@@ -77,7 +78,7 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         json.dump(data, f, indent=4)
 
     if draw_graph:
-        aco.graph.draw_graph(path)
+        aco.graph.draw_graph(path, "drawing/graph.png")
 
     if draw_plot:
         days = [entry["day"] for entry in data["ant_optimization"]]
@@ -89,7 +90,13 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         plt.axhline(y=dijkstra_cost, color='r', linestyle='--', label='Dijkstra')
         plt.title('Path vs Day')
         plt.grid(True)
+        plt.savefig("drawing/plot.png")
         plt.show()
+
+    if draw_plot and draw_graph:
+        result_gui.resultwindow("drawing/graph.png","drawing/plot.png")
+
+
 
 
 if __name__ == '__main__':

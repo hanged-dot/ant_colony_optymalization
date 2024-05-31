@@ -47,8 +47,10 @@ class GraphStruct:
         # node labels
         nx.draw_networkx_labels(self.graph, pos, font_size=20)
         # edge cost labels
-        edge_labels = nx.get_edge_attributes(self.graph, "pheromones")
-        nx.draw_networkx_edge_labels(self.graph, pos, edge_labels)
+        edge_pheromones = nx.get_edge_attributes(self.graph, "pheromones")
+        nx.draw_networkx_edge_labels(self.graph, pos, edge_pheromones, label_pos=0.3, font_color='blue')
+        edge_distance = nx.get_edge_attributes(self.graph, "distance")
+        nx.draw_networkx_edge_labels(self.graph, pos, edge_distance, label_pos=0.7, font_color='green')
 
         ax = plt.gca()
         ax.margins(0.08)
