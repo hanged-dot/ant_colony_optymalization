@@ -149,11 +149,13 @@ class MyWindow(QtWidgets.QDialog):
             with open(config_filepath, 'w') as config_file:
                 json.dump(config_data, config_file, indent=4)
             print(f"Configuration saved as {config_filename}!")
-            main(graphfilename, config_filename)
+            self.result_window = main(graphfilename, config_filename)
+            self.result_window.show()
         else:
             graphfilename = self.graphQComboBox1.currentText()
             configfilename = self.configQComboBox.currentText()
-            main(graphfilename, configfilename)
+            self.result_window = main(graphfilename, configfilename)
+            self.result_window.show()
 
 def populate_combo_box(box, directory):
     try:

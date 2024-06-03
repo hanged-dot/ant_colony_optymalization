@@ -91,10 +91,9 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         plt.title('Path vs Day')
         plt.grid(True)
         plt.savefig("drawing/plot.png")
-        plt.show()
-
+        # plt.show()
     if draw_plot and draw_graph:
-        result_gui.resultwindow("drawing/graph.png","drawing/plot.png")
+        return result_gui.resultwindow("drawing/graph.png","drawing/plot.png")
 
 
 

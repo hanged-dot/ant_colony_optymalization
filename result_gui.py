@@ -1,5 +1,6 @@
 from PyQt5.QtWidgets import QWidget, QApplication, QLabel, QHBoxLayout
 from PyQt5.QtGui import QPixmap, QIcon
+from time import sleep
 import sys
 class ImageWindow(QWidget):
     def __init__(self,graph_drawing, path_chart):
@@ -11,25 +12,26 @@ class ImageWindow(QWidget):
         layout = QHBoxLayout()
 
         # Dodawanie pierwszego obrazu
-        label1 = QLabel(self)
-        pixmap1 = QPixmap(graph_drawing)
-        label1.setPixmap(pixmap1)
-        layout.addWidget(label1)
+        self.label1 = QLabel()
+        self.pixmap1 = QPixmap(graph_drawing)
+        self.label1.setPixmap(self.pixmap1)
+        layout.addWidget(self.label1)
 
         # Dodawanie drugiego obrazu
-        label2 = QLabel(self)
-        pixmap2 = QPixmap(path_chart)
-        label2.setPixmap(pixmap2)
-        layout.addWidget(label2)
+        self.label2 = QLabel()
+        self.pixmap2 = QPixmap(path_chart)
+        self.label2.setPixmap(self.pixmap2)
+        layout.addWidget(self.label2)
 
         self.setLayout(layout)
         self.setWindowTitle("Result")
-        self.show()
+
+
 def resultwindow(graph_drawing, path_chart):
-    app = QApplication(sys.argv)
+    # app = QApplication(sys.argv)
     result = ImageWindow(graph_drawing,path_chart)
     icon = QIcon()
     icon.addPixmap(QPixmap("antcolony.png"), QIcon.Selected, QIcon.On)
     result.setWindowIcon(icon)
-    result.show()
-    sys.exit(app.exec_())
+    return result
+    # sys.exit(app.exec_())

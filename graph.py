@@ -57,4 +57,4 @@ class GraphStruct:
         plt.axis("off")
         #plt.tight_layout()
         plt.savefig(directory)
-        plt.show()
+        # plt.show()

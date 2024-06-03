@@ -1,205 +1,45 @@
 {
-    "best_path": 31,
+    "best_path": 39,
     "ant_optimization": [
         {
             "day": 1,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 2,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 3,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 4,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 5,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 6,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 7,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 8,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 9,
-            "path_cost": 48
+            "path_cost": 258
         },
         {
             "day": 10,
-            "path_cost": 48
-        },
-        {
-            "day": 11,
-            "path_cost": 48
-        },
-        {
-            "day": 12,
-            "path_cost": 48
-        },
-        {
-            "day": 13,
-            "path_cost": 48
-        },
-        {
-            "day": 14,
-            "path_cost": 48
-        },
-        {
-            "day": 15,
-            "path_cost": 48
-        },
-        {
-            "day": 16,
-            "path_cost": 48
-        },
-        {
-            "day": 17,
-            "path_cost": 48
-        },
-        {
-            "day": 18,
-            "path_cost": 48
-        },
-        {
-            "day": 19,
-            "path_cost": 48
-        },
-        {
-            "day": 20,
-            "path_cost": 48
-        },
-        {
-            "day": 21,
-            "path_cost": 48
-        },
-        {
-            "day": 22,
-            "path_cost": 48
-        },
-        {
-            "day": 23,
-            "path_cost": 48
-        },
-        {
-            "day": 24,
-            "path_cost": 48
-        },
-        {
-            "day": 25,
-            "path_cost": 48
-        },
-        {
-            "day": 26,
-            "path_cost": 48
-        },
-        {
-            "day": 27,
-            "path_cost": 48
-        },
-        {
-            "day": 28,
-            "path_cost": 48
-        },
-        {
-            "day": 29,
-            "path_cost": 48
-        },
-        {
-            "day": 30,
-            "path_cost": 48
-        },
-        {
-            "day": 31,
-            "path_cost": 48
-        },
-        {
-            "day": 32,
-            "path_cost": 48
-        },
-        {
-            "day": 33,
-            "path_cost": 48
-        },
-        {
-            "day": 34,
-            "path_cost": 48
-        },
-        {
-            "day": 35,
-            "path_cost": 48
-        },
-        {
-            "day": 36,
-            "path_cost": 48
-        },
-        {
-            "day": 37,
-            "path_cost": 48
-        },
-        {
-            "day": 38,
-            "path_cost": 48
-        },
-        {
-            "day": 39,
-            "path_cost": 48
-        },
-        {
-            "day": 40,
-            "path_cost": 48
-        },
-        {
-            "day": 41,
-            "path_cost": 48
-        },
-        {
-            "day": 42,
-            "path_cost": 48
-        },
-        {
-            "day": 43,
-            "path_cost": 48
-        },
-        {
-            "day": 44,
-            "path_cost": 48
-        },
-        {
-            "day": 45,
-            "path_cost": 48
-        },
-        {
-            "day": 46,
-            "path_cost": 48
-        },
-        {
-            "day": 47,
-            "path_cost": 48
-        },
-        {
-            "day": 48,
-            "path_cost": 48
-        },
-        {
-            "day": 49,
-            "path_cost": 48
-        },
-        {
-            "day": 50,
-            "path_cost": 48
+            "path_cost": 258
         }
     ]
 }
