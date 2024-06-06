@@ -6,7 +6,7 @@ import networkx as nx
 import load_graph
 import fire
 import matplotlib.pyplot as plt
-##import result_gui
+import result_gui
 
 def default_graph(pheromones=1, distance=1):
     n=5
@@ -96,7 +96,7 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
     if draw_plot:
         days = [entry["day"] for entry in data["ant_optimization"]]
         paths = [entry["path_cost"] for entry in data["ant_optimization"]]
-
+        plt.figure()
         plt.plot(days, paths, marker='.', linestyle='-')
         plt.xlabel('Day')
         plt.ylabel('Path')
@@ -106,9 +106,10 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         plt.savefig("drawing/plot.png")
         # plt.show()
     # if draw_plot and draw_graph:
-    #     return result_gui.resultwindow("drawing/graph.png","drawing/plot.png")
+        return result_gui.resultwindow("drawing/graph.png","drawing/plot.png")
 
 def plot_graph(graph, shortest_path, directory):
+    plt.figure()
     for e in graph.edges():
         source, destination = e[0], e[1]
         graph[source][destination]["pheromones"] = round(graph[source][destination]["pheromones"])
