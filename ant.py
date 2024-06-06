@@ -26,8 +26,8 @@ class Ant:
         sum_ = 0
         probability = []
         for i in unvisited_neighbours:
-            new_value = self.graph.get_pheromones(self.current, i) ** self.alpha + self.graph.get_distance(self.current,
-                                                                                                           i) ** self.beta
+            new_value = self.graph.get_pheromones(self.current, i) ** self.alpha + ( 1 / self.graph.get_distance(self.current,i)) ** self.beta
+
             edge_value_for_ant.append(new_value)
             sum_ += new_value
         for i in edge_value_for_ant:
@@ -76,8 +76,9 @@ class Ant:
             probability = []
             maxim = 0
             for i in unvisited_neighbours:
-                new_value = self.graph.get_pheromones(self.current, i) ** self.alpha + self.graph.get_distance(
-                    self.current, i) ** self.beta
+                new_value = self.graph.get_pheromones(self.current, i) ** self.alpha + (
+                            1 / self.graph.get_distance(self.current, i)) ** self.beta
+
                 edge_value_for_ant.append(new_value)
                 sumy += new_value
             for i in edge_value_for_ant:
