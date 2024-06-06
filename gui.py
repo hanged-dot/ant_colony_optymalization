@@ -126,12 +126,12 @@ class MyWindow(QtWidgets.QDialog):
         # Collect data from widgets
         if self.bottomRightGroupBox.isChecked():
             config_data = {
-                'ants': self.ants.text(),
-                'days': self.days.text(),
-                'pheromones': self.pheromones.text(),
-                'evaporation': self.evaporation.text(),
-                'importance_of_pheromones': self.importance_of_pheromones.text(),
-                'importance_of_distance': self.importance_of_distance.text(),
+                'ants': int(self.ants.text()),
+                'days': int(self.days.text()),
+                'pheromones': float(self.pheromones.text()),
+                'evaporation': float(self.evaporation.text()),
+                'importance_of_pheromones': float(self.importance_of_pheromones.text()),
+                'importance_of_distance': float(self.importance_of_distance.text()),
             }
             graphfilename = self.graphQComboBox2.currentText()
             config_folder = './configs'
