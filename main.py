@@ -1,5 +1,6 @@
 import json
-
+import glob
+import os
 from aco import ACO
 import networkx as nx
 import load_graph
@@ -44,6 +45,9 @@ def get_config(filename=None):
         return data
 
 def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, draw_plot=True):
+    files = glob.glob('drawing/*')
+    for f in files:
+        os.remove(f)
     config_dict = get_config(config)
     G = get_graph(config_dict["pheromones"], graph)
     n = len(G.nodes)
@@ -89,7 +93,7 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         plt.ylabel('Path')
         plt.axhline(y=dijkstra_cost, color='r', linestyle='--', label='Dijkstra')
         plt.title('Path vs Day')
-        plt.grid(True)
+        #plt.grid(True)
         plt.savefig("drawing/plot.png")
         # plt.show()
     if draw_plot and draw_graph:
