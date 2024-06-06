@@ -1,4 +1,5 @@
 import json
+from ant_colony import AntColony
 import glob
 import os
 from aco import ACO
@@ -52,7 +53,18 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
     G = get_graph(config_dict["pheromones"], graph)
     n = len(G.nodes)
 
-    aco = ACO(
+    # aco = ACO(
+    #     G,
+    #     n,
+    #     config_dict["ants"],
+    #     config_dict["pheromones"],
+    #     config_dict["evaporation"],
+    #     config_dict["importance_of_pheromones"],
+    #     config_dict["importance_of_distance"],
+    #     config_dict["days"],
+    # )
+
+    aco = AntColony(
         G,
         n,
         config_dict["ants"],
@@ -63,7 +75,8 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         config_dict["days"],
     )
 
-    path, results = aco.find_path()
+    path_and_dist, results = aco.find_path()
+    path, dist = path_and_dist
 
     dijkstra_path = nx.dijkstra_path(G, 0, n - 1, "distance")
     dijkstra_cost = nx.path_weight(G, dijkstra_path, "distance")
@@ -82,12 +95,12 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         json.dump(data, f, indent=4)
 
     if draw_graph:
-        aco.graph.draw_graph(path, "drawing/graph.png")
+        plot_graph(G, path, "drawing/graph.png")
 
     if draw_plot:
         days = [entry["day"] for entry in data["ant_optimization"]]
         paths = [entry["path_cost"] for entry in data["ant_optimization"]]
-
+        plt.figure()
         plt.plot(days, paths, marker='.', linestyle='-')
         plt.xlabel('Day')
         plt.ylabel('Path')
@@ -96,10 +109,42 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         #plt.grid(True)
         plt.savefig("drawing/plot.png")
         # plt.show()
-    if draw_plot and draw_graph:
+    # if draw_plot and draw_graph:
         return result_gui.resultwindow("drawing/graph.png","drawing/plot.png")
 
+def plot_graph(graph, shortest_path, directory):
+    plt.figure()
+    for e in graph.edges():
+        source, destination = e[0], e[1]
+        graph[source][destination]["pheromones"] = round(graph[source][destination]["pheromones"])
+    pos = nx.spring_layout(graph, seed=2)
+    nx.draw(graph, pos, width=4)
 
+    nx.draw_networkx_nodes(graph, pos, node_size=700)
+
+    # nx.draw_networkx_edges(G, pos, width=2)
+    nx.draw_networkx_edges(
+        graph,
+        pos,
+        edgelist=list(shortest_path),
+        edge_color="r",
+        width=4,
+    )
+
+    # node labels
+    nx.draw_networkx_labels(graph, pos, font_size=20)
+    # edge cost labels
+    edge_pheromones = nx.get_edge_attributes(graph, "pheromones")
+    nx.draw_networkx_edge_labels(graph, pos, edge_pheromones, label_pos=0.3, font_color='blue')
+    edge_distance = nx.get_edge_attributes(graph, "distance")
+    nx.draw_networkx_edge_labels(graph, pos, edge_distance, label_pos=0.7, font_color='green')
+
+    ax = plt.gca()
+    ax.margins(0.08)
+    plt.axis("off")
+    #plt.tight_layout()
+    plt.savefig(directory)
+    # plt.show()
 
 
 if __name__ == '__main__':
