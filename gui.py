@@ -29,8 +29,6 @@ class MyWindow(QtWidgets.QDialog):
         topLayout.addWidget(buttonLabel)
         topLayout.addWidget(button)
         topLayout.addStretch(1)
-
-        # todo implement checking group 1 or 3 between your own config of given
         self.bottomRightGroupBox.toggled.connect(self.topRightGroupBox.setDisabled)
         self.bottomRightGroupBox.toggled.connect(self.topLeftGroupBox.setDisabled)
 
@@ -55,8 +53,7 @@ class MyWindow(QtWidgets.QDialog):
         populate_combo_box(self.graphQComboBox1,"./graphs")
         self.configQComboBox = QComboBox()
         populate_combo_box(self.configQComboBox,"./configs")
-
-
+        self.configQComboBox.currentIndexChanged.connect(self.updateTopRightGroupBox)
         layout = QVBoxLayout()
         layout.addWidget(self.graphQComboBox1)
         layout.addWidget(self.configQComboBox)
@@ -65,12 +62,35 @@ class MyWindow(QtWidgets.QDialog):
 
     def createTopRightGroupBox(self):
         self.topRightGroupBox = QGroupBox("Chosen configuration")
-        #todo implement showing confing uppon choosing from group 1
-
+        config= self.configQComboBox.currentText()
+        with open(f"configs/{config}", 'r') as f:
+            data = json.load(f)
+        self.ants_info= QLabel("Ant number: " + str(data["ants"]))
+        self.days_info=QLabel("Days number: " + str(data["days"]))
+        self.pheromones_info=QLabel("Pheromones deposited by ants: " + str(data["pheromones"]))
+        self.evaporation_info =QLabel("Pheromones evraporation rate: " + str(data["evaporation"]))
+        self.importance_of_pheromones_info = QLabel("Importance of pheromones: " + str(data["importance_of_pheromones"]))
+        self.importance_of_distance_info = QLabel("Importance of distance: " + str(data["importance_of_distance"]))
         layout = QVBoxLayout()
-        layout.addStretch(1)
-        self.topRightGroupBox.setLayout(layout)
+        layout.addWidget(self.ants_info)
+        layout.addWidget(self.days_info)
+        layout.addWidget(self.pheromones_info)
+        layout.addWidget(self.evaporation_info)
+        layout.addWidget(self.importance_of_pheromones_info)
+        layout.addWidget(self.importance_of_distance_info)
 
+        layout.addStretch(5)
+        self.topRightGroupBox.setLayout(layout)
+    def updateTopRightGroupBox(self,index):
+        config = self.configQComboBox.itemText(index)
+        with open(f"configs/{config}", 'r') as f:
+            data = json.load(f)
+        self.ants_info.setText("Ant number: " + str(data["ants"]))
+        self.days_info.setText("Days number: " + str(data["days"]))
+        self.pheromones_info.setText("Pheromones deposited by ants: " + str(data["pheromones"]))
+        self.evaporation_info.setText("Pheromones evraporation rate: " + str(data["evaporation"]))
+        self.importance_of_pheromones_info.setText("Importance of pheromones: " + str(data["importance_of_pheromones"]))
+        self.importance_of_distance_info.setText("Importance of distance: " + str(data["importance_of_distance"]))
 
 
     def createBottomRightGroupBox(self):

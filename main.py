@@ -8,8 +8,9 @@ import fire
 import matplotlib.pyplot as plt
 import result_gui
 
+
 def default_graph(pheromones=1, distance=1):
-    n=5
+    n = 5
     G = nx.Graph()
     nodes = [i for i in range(n)]
     G.add_nodes_from(nodes)
@@ -26,23 +27,25 @@ def get_graph(pheromones, filename=None):
         E = load_graph.load_graph(f"graphs/{filename}")
         G = nx.Graph()
         for u, v, dist in E:
-            G.add_edge(u-1, v-1, distance=dist, pheromones=pheromones)
+            G.add_edge(u - 1, v - 1, distance=dist, pheromones=pheromones)
         return G
+
 
 def get_config(filename=None):
     if filename is None:
         return {
-                "ants": 10,
-                "days": 50,
-                "pheromones": 0.2,
-                "evaporation": 0.1,
-                "importance_of_pheromones": 1,
-                "importance_of_distance": 1
-            }
+            "ants": 10,
+            "days": 50,
+            "pheromones": 0.2,
+            "evaporation": 0.1,
+            "importance_of_pheromones": 1,
+            "importance_of_distance": 1
+        }
     else:
         with open(f"configs/{filename}", 'r') as f:
             data = json.load(f)
         return data
+
 
 def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, draw_plot=True):
     files = glob.glob('drawing/*')
@@ -63,18 +66,22 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         config_dict["days"],
     )
 
-    path, results = aco.find_path()
+    path_and_dist, results = aco.find_path()
+    path, dist = path_and_dist
+    print(path)
+    print(dist)
 
     dijkstra_path = nx.dijkstra_path(G, 0, n - 1, "distance")
     dijkstra_cost = nx.path_weight(G, dijkstra_path, "distance")
-
+    print(dijkstra_path)
+    print(dijkstra_cost)
     data = {
         "best_path": dijkstra_cost,
         "ant_optimization": [],
     }
     for i, cost in enumerate(results):
         data["ant_optimization"].append({
-            "day": i+1,
+            "day": i + 1,
             "path_cost": cost,
         })
 
@@ -82,24 +89,20 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         json.dump(data, f, indent=4)
 
     if draw_graph:
-        aco.graph.draw_graph(path, "drawing/graph.png")
+        aco.draw_graph(path, dijkstra_path,"drawing/graph.png")
 
     if draw_plot:
         days = [entry["day"] for entry in data["ant_optimization"]]
         paths = [entry["path_cost"] for entry in data["ant_optimization"]]
-
+        plt.figure()
         plt.plot(days, paths, marker='.', linestyle='-')
         plt.xlabel('Day')
         plt.ylabel('Path')
         plt.axhline(y=dijkstra_cost, color='r', linestyle='--', label='Dijkstra')
         plt.title('Path vs Day')
-        #plt.grid(True)
+        # plt.grid(True)
         plt.savefig("drawing/plot.png")
-        # plt.show()
-    if draw_plot and draw_graph:
-        return result_gui.resultwindow("drawing/graph.png","drawing/plot.png")
-
-
+        return result_gui.resultwindow("drawing/graph.png", "drawing/plot.png")
 
 
 if __name__ == '__main__':
