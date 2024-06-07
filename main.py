@@ -66,15 +66,19 @@ def main(graph=None, config=None, out="results/ant_data.json", draw_graph=True, 
         config_dict["days"],
     )
 
-    path_and_dist, results = aco.find_path()
+    path_and_dist, results, shortest_ever = aco.find_path()
     path, dist = path_and_dist
-    print(path)
-    print(dist)
+    short_path, short_dist = shortest_ever
+    print(f"Best path: {path}")
+    print(f"Best dist: {dist}")
+    print(f"Shortest path: {short_path}")
+    print(f"Shortest dist: {short_dist}")
+
 
     dijkstra_path = nx.dijkstra_path(G, 0, n - 1, "distance")
     dijkstra_cost = nx.path_weight(G, dijkstra_path, "distance")
-    print(dijkstra_path)
-    print(dijkstra_cost)
+    print(f"Dijkstra path: {dijkstra_path}")
+    print(f"Dijkstra cost: {dijkstra_cost}")
     data = {
         "best_path": dijkstra_cost,
         "ant_optimization": [],

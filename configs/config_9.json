@@ -1,0 +1,8 @@
+{
+    "ants": 100,
+    "days": 100,
+    "pheromones": 1.0,
+    "evaporation": 0.1,
+    "importance_of_pheromones": 0.5,
+    "importance_of_distance": 0.5
+}

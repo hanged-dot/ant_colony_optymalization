@@ -61,7 +61,7 @@ class ACO:
         shortest_ever, results = self.run()
         final_path = self.find_solution()
         final_path = list(zip(final_path,final_path[1:]))
-        return (final_path, self.path_total_dist(final_path)), results
+        return (final_path, self.path_total_dist(final_path)), results, shortest_ever
 
     def evaporate(self):
         for u,v in self.graph.edges():
